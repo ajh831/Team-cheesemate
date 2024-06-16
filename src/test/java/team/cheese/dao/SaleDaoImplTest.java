@@ -649,4 +649,29 @@ public class SaleDaoImplTest {
         System.out.println(saleList);
         assertNotNull(saleList);
     }
+
+    @Test
+    public void testSearchSale2() throws Exception {
+//        SELECT no, addr_name, sal_name, title, contents
+//        FROM sale
+//        WHERE ur_state = 'Y'
+//        AND (
+//                addr_name LIKE '%인형%' OR
+//        sal_name LIKE '%인형%' OR
+//        title LIKE '%인형%' OR
+//        contents LIKE '%인형%'
+//            )
+//        ORDER BY h_date DESC, no DESC
+//        LIMIT 10 OFFSET 0
+
+        String text = "인형";
+        Map map = new HashMap();
+        map.put("text", text);
+        map.put("offset", 0);
+        map.put("pageSize", 10);
+        List<SaleDto> saleList = saleDao.searchSale(map);
+        System.out.println(saleList.size());
+        System.out.println(saleList);
+        assertNotNull(saleList);
+    }
 }
