@@ -295,12 +295,18 @@ public class SaleRestController {
         return new ResponseEntity<>("", HttpStatus.OK);
     }
 
+    // ajax main 화면 검색창으로 검색 기능
+    @RequestMapping("/updateSaleSCd")
+    public ResponseEntity<List<SaleDto>> saleSearch(@RequestParam String text) throws Exception {
+        // 검색어를 이용하여 주소를 검색
+        List<SaleDto> saleList = new ArrayList<>(); // 수정 필요
+        return new ResponseEntity<>(saleList, HttpStatus.OK);
+    }
 
     public long getStartOfToday() {
         Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
         return startOfToday.toEpochMilli();
     }
-
 
     @ExceptionHandler(DuplicateKeyException.class)
     public ResponseEntity<String> handleDuplicateKeyException(DuplicateKeyException e) {

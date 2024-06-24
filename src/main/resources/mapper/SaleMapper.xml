@@ -222,14 +222,12 @@
             no = #{no}
     </update>
 
-    <!--  새로 추가한거!!!!!!!!!!!!!!!!!   후기글 작성시 상태 변경 -->
+    <!-- 후기글 작성시 상태 변경 -->
     <update id="reviewState" parameterType="Long">
         UPDATE sale
         SET rv_state = 'N'
         WHERE no = #{no}
     </update>
-    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
-
 
     <!-- 전체 삭제  -->
     <delete id="deleteAll">
@@ -259,20 +257,44 @@
     <!--   2. 지역을 기준으로 조회  -->
     <!--   3.   -->
     <select id="searchSale" parameterType="String" resultType="SaleDto">
-        SELECT no, addr_name, sal_name, title, contents
-        FROM sale
+        <include refid="selectFromSale"/>
         WHERE ur_state = 'Y'
         <if test="text != null and text != ''">
             AND (
-            addr_name LIKE CONCAT('%', #{text}, '%') OR
-            sal_name LIKE CONCAT('%', #{text}, '%') OR
-            title LIKE CONCAT('%', #{text}, '%') OR
-            contents LIKE CONCAT('%', #{text}, '%')
+            title LIKE CONCAT('%', #{text}, '%') OR     -- 제목
+            addr_name LIKE CONCAT('%', #{text}, '%') OR -- 지역명
+            sal_name LIKE CONCAT('%', #{text}, '%') OR  -- 판매카테고리명
+            contents LIKE CONCAT('%', #{text}, '%') OR  -- 내용
             )
         </if>
         ORDER BY h_date DESC, no DESC
         LIMIT #{pageSize} OFFSET #{offset}
     </select>
+
+<!--  검색 시 @상점명 으로 검색한 경우  -->
+    <select id="searchSale" parameterType="String" resultType="SaleDto">
+        <include refid="selectFromSale"/>
+        WHERE ur_state = 'Y'
+        <if test="text != null and text != ''">
+            AND (
+            seller_nick LIKE CONCAT(#{text})     -- 판매자닉네임
+            )
+        </if>
+        ORDER BY h_date DESC, no DESC
+        LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+
+<!--  태그명으로 검색한 경우  -->u
+    <select id="searchTag" parameterType="String" resultType="SaleDto">
+        SELECT s.*, stt.*
+        FROM (SELECT st.sal_no, t.no as tag_no, t.contents
+              FROM (SELECT *
+                    FROM tag
+                    WHERE contents LIKE #{text}) AS t
+                       JOIN sale_tag AS st ON t.no = st.tag_no) AS stt
+                 JOIN sale AS s ON s.no = stt.sal_no
+    </select>
+
 
     <select id="selectSeller" parameterType="map" resultType="SaleDto">
         <include refid="selectFromSale"/>

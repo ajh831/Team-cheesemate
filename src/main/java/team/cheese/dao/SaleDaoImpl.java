@@ -145,6 +145,7 @@ public class SaleDaoImpl implements SaleDao {
         return session.update(namespace + "reviewState", no);
     }
 
+    // 판매글 검색어로 조회(메인화면 header에서 내용 검색하는 경우)
     @Override
     public List<SaleDto> searchSale(Map map) throws Exception {
         return session.selectList(namespace + "searchSale", map);

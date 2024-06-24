@@ -65,11 +65,8 @@ public interface SaleDao {
     // 판매글 끌어올리기
     int hoistingSale(Map map) throws Exception;
 
-    //새로 추가!!!! 후기글 작성시 상태 업데이트
+    // 후기글 작성시 상태 업데이트
     int reviewState(Long no) throws Exception;
-
-    // 판매글 검색어로 조회
-    List<SaleDto> searchSale(Map map) throws Exception;
 
     //구매자가 판매글 예약/구매시
     int buySale(SaleDto saleDto) throws Exception;
@@ -79,4 +76,12 @@ public interface SaleDao {
 
     int updateLikeCnt(Long no,int cnt) throws Exception;
 
+    // 판매글 검색어로 조회(제목, 주소명, 내용) + 추가 수정필요
+    List<SaleDto> searchSale(Map map) throws Exception;
+
+    // 판매글 상점명으로 검색 + 추가 수정필요
+    List<SaleDto> searchSellerNick(Map map) throws Exception;
+
+    // 판매글 태그명으로 검색 + 추가 수정필요 -> 태그명은 #을 신경안쓰고 검색하는 것 같음
+    List<SaleDto> searchTag(Map map) throws Exception;
 }

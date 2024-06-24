@@ -66,7 +66,7 @@
             <a href="/" id="cheezmate"><img src="" alt="우리들의 팀메이트 치즈마켓" id="logoimg"></a>
         </div>
         <div id="searchbox">
-            <input type="text" name="search" id="search" autocomplete="off">
+            <input type="text" name="search" id="search" autocomplete="off" placeholder="상품명, 지역명, 내용 등을 입력하세요.">
         </div>
         <div id="subnavbox">
             <div id="subnavinnerbox">
