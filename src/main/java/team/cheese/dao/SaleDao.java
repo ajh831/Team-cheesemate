@@ -84,4 +84,6 @@ public interface SaleDao {
 
     // 판매글 태그명으로 검색 + 추가 수정필요 -> 태그명은 #을 신경안쓰고 검색하는 것 같음
     List<SaleDto> searchTag(Map map) throws Exception;
+
+    int searchSaleCount(String text) throws Exception;
 }

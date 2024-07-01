@@ -168,4 +168,21 @@ public class SaleDaoImpl implements SaleDao {
         map.put("cnt",cnt);
         return session.update(namespace+"updateLikeCnt",map);
     }
+
+
+    @Override
+    public List<SaleDto> searchSellerNick(Map map) throws Exception {
+        return List.of();
+    }
+
+    @Override
+    public List<SaleDto> searchTag(Map map) throws Exception {
+        return List.of();
+    }
+
+    @Override
+    public int searchSaleCount(String text) throws Exception {
+
+        return session.selectOne(namespace+"searchSaleCount", text);
+    }
 }
