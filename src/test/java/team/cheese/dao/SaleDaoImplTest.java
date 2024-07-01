@@ -674,4 +674,12 @@ public class SaleDaoImplTest {
         System.out.println(saleList);
         assertNotNull(saleList);
     }
+
+    @Test
+    public void testSearchSaleCount() throws Exception {
+        String text = "굿즈";
+        int count = saleDao.searchSaleCount(text);
+        System.out.println(count);
+        assertNotNull(count);
+    }
 }

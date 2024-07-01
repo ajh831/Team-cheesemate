@@ -403,5 +403,12 @@ public class SaleService {
     public JjimDTO bringLike(JjimDTO jjimDTO) throws Exception {
         return jjimDao.findLike(jjimDTO);
     }
+
+    // 상단 검색 목록에서 판매글 검색을 시도한 경우
+//    public List<SaleDto> searchText(Map map) throws Exception {
+//
+//
+//    return saleDao.searchSale(text);
+//    }
 }
 

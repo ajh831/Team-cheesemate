@@ -303,6 +303,36 @@ public class SaleRestController {
         return new ResponseEntity<>(saleList, HttpStatus.OK);
     }
 
+    // ajax 주소 검색
+//    @RequestMapping("/searchText")
+//    public ResponseEntity<ArrayList<SaleDto>> updateSaleSCd(@RequestParam(defaultValue = "1") int page,
+//                                                            @RequestParam(defaultValue = "10") int pageSize,
+//                                                            @RequestParam String text) throws Exception {
+//
+//        Map map = new HashMap();
+//        map.put("text", text);
+//
+//        char chr = text.charAt(0);
+//        if (chr == '#') {
+//
+//        } else if (chr == '@') {
+//
+//        } else {
+//
+//        }
+//
+//        int totalCnt = saleService.getCount(map);
+//
+//        PageHandler ph = new PageHandler(totalCnt, page, pageSize);
+//
+//        map.put("offset", ph.getOffset());
+//        map.put("pageSize", pageSize);
+//
+//        // 검색어를 이용하여 주소를 검색
+//        ArrayList<UserInfoDTO> userlist = saleService.updateSaleSCd(seller_id);
+//        return new ResponseEntity<>(userlist, HttpStatus.OK);
+//    }
+
     public long getStartOfToday() {
         Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
         return startOfToday.toEpochMilli();
